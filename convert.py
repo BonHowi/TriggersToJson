@@ -87,7 +87,6 @@ def main():
     monsters_df.insert(loc=0, column='triggers', value=triggers_def_series)
 
     print("Creating output")
-
     types = {'id': [1, 0], 'label': ["Legendary", "Rare"]}
     types_df = pd.DataFrame(data=types)
     json_types = {'types': types_df, 'commands': monsters_df}
@@ -98,7 +97,7 @@ def main():
         for key in json_types.keys()
     }
 
-    # write to disk
+    print("Saving .json output")
     with open('output\monsters.json', 'w', encoding='utf8') as fp:
         json.dump(
             data_dict,
@@ -107,6 +106,9 @@ def main():
             ensure_ascii=False,
             sort_keys=False
         )
+    print(".json saved")
+    
+    print("Saving .txt output")
     with open('output\monsters.txt', 'w', encoding='utf8') as fp:
         json.dump(
             data_dict,
@@ -114,8 +116,7 @@ def main():
             indent=4,
             ensure_ascii=False
         )
-
-    print(".json saved")
+    print(".txt saved")
 
 
 if __name__ == "__main__":
